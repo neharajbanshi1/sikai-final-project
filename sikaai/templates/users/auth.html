@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Login or Register - Sika.ai{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div class="card-header" style="background-color: #f8f9fa; border-bottom: none; border-radius: 15px 15px 0 0;">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login-form">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register-form">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body tab-content" style="padding: 40px;">
+                    <div class="tab-pane fade show active" id="login-form">
+                        <h3 class="text-center" style="color: #4a4a4a; font-weight: bold;">Login to Your Account</h3>
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            {{ login_form.as_p }}
+                            <button type="submit" class="btn btn-primary w-100" style="font-size: 1.2rem; padding: 15px; border-radius: 10px;">Login</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="register-form">
+                        <h3 class="text-center" style="color: #4a4a4a; font-weight: bold;">Create Your Account</h3>
+                        <form method="post" action="{% url 'register' %}">
+                            {% csrf_token %}
+                            {{ register_form.as_p }}
+                            <button type="submit" class="btn btn-primary w-100" style="font-size: 1.2rem; padding: 15px; border-radius: 10px;">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

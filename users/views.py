@@ -1,30 +1,36 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from django.contrib.auth.views import LoginView, LogoutView
-from .forms import CustomUserCreationForm, UserProfileForm, LoginForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import LogoutView
+from .forms import RegistrationForm, LoginForm
 
-class CustomLoginView(LoginView):
-    form_class = LoginForm
-    template_name = 'users/login.html'
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+    else:
+        form = LoginForm()
+    return render(request, 'users/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
-        user_form = CustomUserCreationForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            profile = user.userprofile
+            profile.age = form.cleaned_data['age']
             profile.save()
             login(request, user)
-            return redirect('home')  # Redirect to a home page after registration
+            return redirect('home')
     else:
-        user_form = CustomUserCreationForm()
-        profile_form = UserProfileForm()
-    return render(request, 'users/register.html', {
-        'user_form': user_form,
-        'profile_form': profile_form
-    })
+        form = RegistrationForm()
+    return render(request, 'users/register.html', {'form': form})
 
 def landing_page(request):
     return render(request, 'landing.html')

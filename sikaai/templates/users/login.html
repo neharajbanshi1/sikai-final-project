@@ -3,18 +3,30 @@
 {% block title %}Login - Sika.ai{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="text-center">Login to Your Account</h3>
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                </form>
+<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 style="font-size: 4rem; font-weight: bold; color: #4a4a4a;">Sika.ai</h1>
+            <p style="font-size: 1.5rem;">The fun learning companion for kids of ages 4-14 that works offline in Nepali and local languages!</p>
+        </div>
+        <div class="col-md-6">
+            <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div class="card-body" style="padding: 40px;">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <input type="text" name="username" class="form-control" placeholder="Username" style="font-size: 1.2rem; padding: 15px; border-radius: 10px;">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="password" class="form-control" placeholder="Password" style="font-size: 1.2rem; padding: 15px; border-radius: 10px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" style="font-size: 1.2rem; padding: 15px; border-radius: 10px;">Log In</button>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <a href="{% url 'register' %}" class="btn btn-success" style="font-size: 1.2rem; padding: 15px; border-radius: 10px;">Create New Account</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
