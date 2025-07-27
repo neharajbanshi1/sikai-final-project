@@ -7,6 +7,7 @@
     <h1>{{ lesson.title }}</h1>
     <div class="lesson-content">
         <p>{{ lesson.content }}</p>
+        <a href="{% url 'quiz_view' lesson.id %}" class="btn">Take Quiz</a>
     </div>
 </div>
 {% endblock %}

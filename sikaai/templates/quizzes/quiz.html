@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz for {{ lesson.title }} - Sika.ai{% endblock %}
+
+{% block content %}
+<div class="container" style="min-height: calc(100vh - 200px);">
+    <h1>Quiz: {{ lesson.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for quiz in quizzes %}
+            <div class="quiz-question">
+                <p>{{ quiz.question }}</p>
+                {% if quiz.image %}
+                    <img src="{{ quiz.image.url }}" alt="Quiz Image" style="max-width: 300px; margin-bottom: 15px;">
+                {% endif %}
+                <div class="options">
+                    <input type="radio" name="question_{{ quiz.id }}" value="A" id="q{{ quiz.id }}a" {% if quiz.correct_answer == 'A' %}data-correct="true"{% else %}data-correct="false"{% endif %}>
+                    <label for="q{{ quiz.id }}a">{{ quiz.option_a }}</label><br>
+                    <input type="radio" name="question_{{ quiz.id }}" value="B" id="q{{ quiz.id }}b" {% if quiz.correct_answer == 'B' %}data-correct="true"{% else %}data-correct="false"{% endif %}>
+                    <label for="q{{ quiz.id }}b">{{ quiz.option_b }}</label><br>
+                    <input type="radio" name="question_{{ quiz.id }}" value="C" id="q{{ quiz.id }}c" {% if quiz.correct_answer == 'C' %}data-correct="true"{% else %}data-correct="false"{% endif %}>
+                    <label for="q{{ quiz.id }}c">{{ quiz.option_c }}</label><br>
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn">Submit Quiz</button>
+    </form>
+</div>
+{% endblock %}

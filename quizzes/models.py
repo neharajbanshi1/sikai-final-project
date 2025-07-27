@@ -6,6 +6,7 @@ from content.models import Lesson
 class Quiz(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     question = models.TextField()
+    image = models.ImageField(upload_to='quizzes/', blank=True, null=True)
     option_a = models.CharField(max_length=200)
     option_b = models.CharField(max_length=200)
     option_c = models.CharField(max_length=200)

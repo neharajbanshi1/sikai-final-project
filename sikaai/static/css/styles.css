@@ -427,6 +427,38 @@ header {
     background-color: var(--pink);
 }
 
+.correct-answer {
+    background-color: #c6f6c6 !important;
+    border: 2px solid #2e7d32;
+}
+
+.correct-selection {
+    background-color: #c6f6c6 !important;
+    border: 2px solid #2e7d32;
+}
+
+.incorrect-selection {
+    background-color: #f6c6c6 !important;
+    border: 2px solid #c0392b;
+}
+
+.review-question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f3e9;
+}
+
+.review-question .correct {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.review-question .incorrect {
+    color: #c0392b;
+    font-weight: bold;
+}
+
 .chat-game {
     padding: 20px;
     display: flex;

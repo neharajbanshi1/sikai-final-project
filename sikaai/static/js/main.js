@@ -37,19 +37,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 document.addEventListener("DOMContentLoaded", () => {
-    const quizOptions = document.querySelectorAll(".quiz-option");
+    const quizOptions = document.querySelectorAll(".quiz-question .options input");
 
     quizOptions.forEach(option => {
-        option.addEventListener("click", () => {
-            // Reset all
-            quizOptions.forEach(opt => {
-                opt.style.backgroundColor = "#f3e8d3";
+        option.addEventListener("change", () => {
+            const questionDiv = option.closest('.quiz-question');
+            const allOptions = questionDiv.querySelectorAll('input');
+            const correct = option.dataset.correct === 'true';
+
+            allOptions.forEach(opt => {
+                opt.disabled = true;
+                const label = opt.nextElementSibling;
+                if (opt.dataset.correct === 'true') {
+                    label.classList.add('correct-answer');
+                }
             });
 
-            if (option.dataset.correct === "true") {
-                option.style.backgroundColor = "#c6f6c6"; // green
+            const selectedLabel = option.nextElementSibling;
+            if (correct) {
+                selectedLabel.classList.add('correct-selection');
             } else {
-                option.style.backgroundColor = "#f6c6c6"; // red
+                selectedLabel.classList.add('incorrect-selection');
             }
         });
     });

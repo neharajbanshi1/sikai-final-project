@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load quiz_extras %}
+
+{% block title %}Quiz Results for {{ lesson.title }} - Sika.ai{% endblock %}
+
+{% block content %}
+<div class="container" style="min-height: calc(100vh - 200px);">
+    <h1>Quiz Results: {{ lesson.title }}</h1>
+    <div class="results-content">
+        <p>Congratulations, {{ user.username }}!</p>
+        <p>You have completed the quiz for "{{ lesson.title }}".</p>
+        <p>Your score is: <strong>{{ progress.quiz_score|floatformat:2 }}%</strong></p>
+        
+        <div class="answer-review">
+            <h3>Here's how you did:</h3>
+            {% for quiz in quizzes %}
+                <div class="review-question">
+                    <p><strong>Question:</strong> {{ quiz.question }}</p>
+                    <p><strong>Your Answer:</strong> {{ user_answers|get_item:quiz.id }}</p>
+                    <p><strong>Correct Answer:</strong> {{ quiz.get_correct_answer_display }}</p>
+                    {% if user_answers|get_item:quiz.id == quiz.correct_answer %}
+                        <p class="correct">You got it right!</p>
+                    {% else %}
+                        <p class="incorrect">Not quite, the correct answer was {{ quiz.get_correct_answer_display }}.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <a href="{% url 'home' %}" class="btn">Back to Subjects</a>
+    </div>
+</div>
+{% endblock %}
