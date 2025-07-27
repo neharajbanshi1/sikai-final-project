@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <title>Sika.ai - Learning Companion for Kids</title>
+   
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                   
+                    Sika.ai
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#games">Games</a>
+                   
+                    <a href="#download">Download</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Brainy Play Every Day! with Sika.ai</h1>
+                <p>The fun learning companion for kids of ages 4-14 that works offline in Nepali and local languages!</p>
+                <a href="#download" class="cta-button">Download Now</a>
+            </div>
+            
+        </div>
+
+        <!-- Animated Characters -->
+        <div class="character char1">
+            <img src="{% static 'images/teddy.png' %}" alt="Character 1">
+        </div>
+        <div class="character char2">
+            <img src="{% static 'images/cat.png' %}" alt="Character 2">
+        </div>
+        <div class="character char3">
+            <img src="{% static 'images/book.png' %}" alt="Character 3">
+        </div>
+
+        <!-- Doodle Elements -->
+        <div class="doodle cloud1"></div>
+        <div class="doodle cloud2"></div>
+        <div class="doodle flower flower1">
+            <div class="flower-petal p1"></div>
+            <div class="flower-petal p2"></div>
+            <div class="flower-petal p3"></div>
+            <div class="flower-petal p4"></div>
+            <div class="flower-center"></div>
+            <div class="flower-stem"></div>
+            <div class="flower-leaf"></div>
+        </div>
+        <div class="doodle flower flower2">
+            <div class="flower-petal p1"></div>
+            <div class="flower-petal p2"></div>
+            <div class="flower-petal p3"></div>
+            <div class="flower-petal p4"></div>
+            <div class="flower-center"></div>
+            <div class="flower-stem"></div>
+            <div class="flower-leaf"></div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Kids Love Sika.ai</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works Offline</h3>
+                    <p>Learn anytime, anywhere without internet connection. Perfect for remote areas or when traveling!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Local Languages</h3>
+                    <p>Study in Nepali and other local languages, making learning more accessible and comfortable.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Tutor Friend</h3>
+                    <p>Our friendly AI chatbot helps answer questions and explains concepts in a way kids understand.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Works on Any Phone</h3>
+                    <p>Designed to run smoothly on low-end smartphones, making education accessible to everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mini-games" id="games">
+        <div class="container">
+            <h2 class="section-title">Fun Learning Games</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Try these sample games to see how Sika.ai makes learning fun!</p>
+            <div class="games-container">
+                <div class="game-math-match" id="math-match-game">
+                    <div class="math-card" data-match="4">2 + 2</div>
+                    <div class="math-card" data-match="6">3 + 3</div>
+                    <div class="math-card" data-match="9">4 + 5</div>
+                    <div class="math-card" data-match="4">4</div>
+                    <div class="math-card" data-match="6">6</div>
+                    <div class="math-card" data-match="9">9</div>
+                </div>
+                
+                </div>
+                <div class="game">
+                    <div class="game-quiz" id="quiz-game">
+                        <div class="quiz-question">What is the capital of Nepal?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="true">Kathmandu</div>
+                            <div class="quiz-option">Pokhara</div>
+                            <div class="quiz-option">Bhaktapur</div>
+                            <div class="quiz-option">Lalitpur</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="game">
+                    <div class="chat-game">
+                        <div class="chat-messages">
+                            <div class="message bot-message">Hi! I'm Sika, your learning buddy. What would you like to learn today?</div>
+                            <div class="message user-message">How do plants make food?</div>
+                            <div class="message bot-message">Plants make their food through photosynthesis! They use sunlight, water, and carbon dioxide to create glucose and oxygen.</div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Ask me anything..." id="chat-input">
+                            <button id="send-button">➤</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <section class="cta" id="download" style="padding: 70px 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Download Sika.ai Today</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Start your child's learning adventure with Sika.ai</p>
+            <a href="#" class="cta-button" style="font-size: 1.5rem;">Get the App</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sika.ai</h3>
+                    <p>The offline learning companion for kids in Nepal and beyond.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Learn</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">For Schools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
