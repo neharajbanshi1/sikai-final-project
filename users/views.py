@@ -13,7 +13,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('profile')
+                return redirect('home')
     else:
         form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
@@ -27,7 +27,7 @@ def register(request):
             # Create a UserProfile instance
             UserProfile.objects.create(user=user, age=form.cleaned_data['age'])
             login(request, user)
-            return redirect('profile')
+            return redirect('home')
     else:
         form = RegistrationForm()
     return render(request, 'users/register.html', {'form': form})
