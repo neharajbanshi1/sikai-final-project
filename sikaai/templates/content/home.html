@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Sika.ai{% endblock %}
+
+{% block content %}
+<div class="container" style="min-height: calc(100vh - 200px);">
+    <h1>Subjects</h1>
+    <div class="subject-list">
+        {% for subject in subjects %}
+            <div class="subject-card">
+                <h2><a href="{% url 'lesson_list' subject.id %}">{{ subject.name }}</a></h2>
+                <p>{{ subject.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ lesson.title }} - Sika.ai{% endblock %}
+
+{% block content %}
+<div class="container" style="min-height: calc(100vh - 200px);">
+    <h1>{{ lesson.title }}</h1>
+    <div class="lesson-content">
+        <p>{{ lesson.content }}</p>
+    </div>
+</div>
+{% endblock %}
