@@ -21,11 +21,7 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-            profile = user.userprofile
-            profile.age = form.cleaned_data['age']
-            profile.save()
+            user = form.save()
             login(request, user)
             return redirect('home')
     else:
