@@ -4,12 +4,12 @@
 
 {% block content %}
 <div class="container" style="min-height: calc(100vh - 200px);">
-    <h1>Subjects</h1>
+    <h1>Topic Categories</h1>
     <div class="subject-list">
-        {% for subject in subjects %}
+        {% for category in topic_categories %}
             <div class="subject-card">
-                <h2><a href="{% url 'lesson_list' subject.id %}">{{ subject.name }}</a></h2>
-                <p>{{ subject.description }}</p>
+                <h2><a href="{% url 'lesson_list' category.id %}">{{ category.name }}</a></h2>
+                <p>{{ category.description }}</p>
             </div>
         {% endfor %}
     </div>

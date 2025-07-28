@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Lessons - Sika.ai{% endblock %}
+{% block title %}Topics - Sika.ai{% endblock %}
 
 {% block content %}
 <div class="container" style="min-height: calc(100vh - 200px);">
-    <h1>Lessons</h1>
+    <h1>Topics</h1>
     <div class="lesson-list">
-        {% for lesson in lessons %}
+        {% for topic in random_topics %}
             <div class="lesson-card">
-                <h2><a href="{% url 'lesson_detail' lesson.id %}">{{ lesson.title }}</a></h2>
-                <p>{{ lesson.content|truncatewords:20 }}</p>
+                <h2><a href="{% url 'lesson_detail' topic.id %}">{{ topic.title }}</a></h2>
+                <p>{{ topic.content|truncatewords:20 }}</p>
             </div>
         {% endfor %}
     </div>

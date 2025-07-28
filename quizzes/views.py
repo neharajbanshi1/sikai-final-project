@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from content.models import Lesson
-from .models import Quiz, UserProgress
+from content.models import RandomTopic
+from .models import Quiz
 
 @login_required
-def quiz_view(request, lesson_id):
-    lesson = get_object_or_404(Lesson, id=lesson_id)
-    quizzes = Quiz.objects.filter(lesson=lesson)
+def quiz_view(request, topic_id):
+    topic = get_object_or_404(RandomTopic, id=topic_id)
+    quizzes = Quiz.objects.filter(topic=topic)
     
     if request.method == 'POST':
         score = 0
@@ -21,35 +21,29 @@ def quiz_view(request, lesson_id):
         
         percentage_score = (score / total_questions) * 100 if total_questions > 0 else 0
         
-        # Save user progress
-        UserProgress.objects.update_or_create(
-            user=request.user,
-            lesson=lesson,
-            defaults={'completed': True, 'quiz_score': percentage_score}
-        )
-        
         # Store answers in session to show on results page
         request.session['quiz_answers'] = user_answers
+        request.session['quiz_score'] = percentage_score
         
-        return redirect('quiz_results', lesson_id=lesson.id)
+        return redirect('quiz_results', topic_id=topic.id)
         
-    return render(request, 'quizzes/quiz.html', {'lesson': lesson, 'quizzes': quizzes})
+    return render(request, 'quizzes/quiz.html', {'topic': topic, 'quizzes': quizzes})
 
 @login_required
-def quiz_results(request, lesson_id):
-    lesson = get_object_or_404(Lesson, id=lesson_id)
-    progress = get_object_or_404(UserProgress, user=request.user, lesson=lesson)
-    quizzes = Quiz.objects.filter(lesson=lesson)
+def quiz_results(request, topic_id):
+    topic = get_object_or_404(RandomTopic, id=topic_id)
+    quizzes = Quiz.objects.filter(topic=topic)
     
     # Get answers from session
     user_answers = request.session.get('quiz_answers', {})
+    score = request.session.get('quiz_score', 0)
     
     # Convert keys to integers for template comparison
     user_answers = {int(k): v for k, v in user_answers.items()}
 
     context = {
-        'lesson': lesson,
-        'progress': progress,
+        'topic': topic,
+        'score': score,
         'quizzes': quizzes,
         'user_answers': user_answers,
     }

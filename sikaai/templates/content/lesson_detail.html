@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}{{ lesson.title }} - Sika.ai{% endblock %}
+{% block title %}{{ random_topic.title }} - Sika.ai{% endblock %}
 
 {% block content %}
 <div class="container" style="min-height: calc(100vh - 200px);">
-    <h1>{{ lesson.title }}</h1>
+    <h1>{{ random_topic.title }}</h1>
     <div class="lesson-content">
-        <p>{{ lesson.content }}</p>
-        <a href="{% url 'quiz_view' lesson.id %}" class="btn">Take Quiz</a>
+        <p>{{ random_topic.content }}</p>
+        <a href="{% url 'take_quiz' random_topic.id %}" class="btn">Take Quiz</a>
     </div>
 </div>
 {% endblock %}

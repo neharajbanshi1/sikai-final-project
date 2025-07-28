@@ -23,7 +23,6 @@ from content import views as content_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', content_views.landing_page, name='landing_page'),
-    path('home/', content_views.home, name='home'),
     path('users/', include('users.urls')),
     path('content/', include('content.urls')),
     path('quiz/', include('quizzes.urls')),

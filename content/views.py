@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Subject, Lesson
+from .models import TopicCategory, RandomTopic
 
 # Create your views here.
 def landing_page(request):
@@ -8,15 +8,15 @@ def landing_page(request):
 
 @login_required
 def home(request):
-    subjects = Subject.objects.all()
-    return render(request, 'content/home.html', {'subjects': subjects})
+    topic_categories = TopicCategory.objects.all()
+    return render(request, 'content/home.html', {'topic_categories': topic_categories})
 
 @login_required
-def lesson_list(request, subject_id):
-    lessons = Lesson.objects.filter(subject_id=subject_id)
-    return render(request, 'content/lesson_list.html', {'lessons': lessons})
+def lesson_list(request, category_id):
+    random_topics = RandomTopic.objects.filter(category_id=category_id)
+    return render(request, 'content/lesson_list.html', {'random_topics': random_topics})
 
 @login_required
-def lesson_detail(request, lesson_id):
-    lesson = Lesson.objects.get(id=lesson_id)
-    return render(request, 'content/lesson_detail.html', {'lesson': lesson})
+def lesson_detail(request, topic_id):
+    random_topic = RandomTopic.objects.get(id=topic_id)
+    return render(request, 'content/lesson_detail.html', {'random_topic': random_topic})

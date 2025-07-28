@@ -1,21 +1,25 @@
 from django.db import models
 
 # Create your models here.
-class Subject(models.Model):
-    name = models.CharField(max_length=50)  # Math, Science, Language, Art
+class TopicCategory(models.Model):
+    name = models.CharField(max_length=50)  # Animals, Space, Numbers, etc.
     description = models.TextField()
-    age_groups = models.CharField(max_length=20)  # "3-5", "6-8", "9-10"
+    icon = models.CharField(max_length=50)  # Font Awesome icon class
+    color_theme = models.CharField(max_length=7)  # Hex color code
+    age_groups = models.CharField(max_length=20)
+    unlock_level = models.IntegerField(default=1)  # Level required to unlock
 
     def __str__(self):
         return self.name
 
-class Lesson(models.Model):
+class RandomTopic(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    category = models.ForeignKey(TopicCategory, on_delete=models.CASCADE)
+    content = models.TextField()  # Brief, engaging content
+    fun_fact = models.TextField()  # Interesting fact about the topic
     age_group = models.CharField(max_length=10)
+    image = models.ImageField(upload_to='topics/', blank=True)
     difficulty_level = models.IntegerField(choices=[(1, 'Easy'), (2, 'Medium'), (3, 'Hard')])
-    image = models.ImageField(upload_to='lessons/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
