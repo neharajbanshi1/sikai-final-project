@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # Add your chatbot URLs here
+    path('', views.chat_view, name='chat'),
 ]
