@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'quizzes',
     'chatbot',
     'analytics',
+    'gamification',
 ]
 
 MIDDLEWARE = [
